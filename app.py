@@ -167,15 +167,15 @@ class dtc():
             return self.make_prediction(x, tree.right)
 X = data.iloc[:, :-1].values
 Y = data.iloc[:, -1].values.reshape(-1,1)
-# data.shape
-# X=data.drop(columns=['Age','Height','PEFR'])
-# y=data['PEFR']
-# from sklearn.model_selection import train_test_split
-# X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=.2, random_state=41)
-# classifier = dtc(min_samples_split=3, max_depth=3)
-# classifier.fit(X_train,Y_train)
-# classifier.print_tree()
-# joblib.dump(classifier, 'PEFR_predictor.joblib')
+data.shape
+X=data.drop(columns=['Age','Height','PEFR'])
+y=data['PEFR']
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=.2, random_state=41)
+classifier = dtc(min_samples_split=3, max_depth=3)
+classifier.fit(X_train,Y_train)
+classifier.print_tree()
+joblib.dump(classifier, 'PEFR_predictor.joblib')
 
 from flask import Flask,request,jsonify
 model = joblib.load('PEFR_predictor.joblib')
